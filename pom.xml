@@ -1,0 +1,144 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.computational-plant-science.jvmicmd</groupId>
+  <artifactId>jvmicmd</artifactId>
+  <version>1.0ALPHA</version>
+  <!-- packaging>jar</packaging -->
+  <packaging>deb</packaging>
+
+  <developers>
+   <developer>
+     <id>cotter</id>
+     <name>Chris Cotter</name>
+     <email>cotter@uga.edu</email>
+     <url>http://www.sciencesundries.com/</url>
+     <organization>Computational Plant Sciences Laboratory</organization>
+     <organizationUrl>http://www.computational-plant-sciences.org</organizationUrl>
+     <roles>
+       <role>architect</role>
+       <role>developer</role>
+     </roles>
+     <timezone>America/New_York</timezone>
+   </developer>
+ </developers>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <repositories>
+      <repository>
+          <id>dice.repository snaps</id>
+          <name>dice.repository.snapshots</name>
+          <url>https://raw.github.com/DICE-UNC/DICE-Maven/master/snapshots</url>
+          <releases>
+              <enabled>true</enabled>
+          </releases>
+          <snapshots>
+              <enabled>true</enabled>
+              <updatePolicy>always</updatePolicy>
+              <checksumPolicy>warn</checksumPolicy>
+          </snapshots>
+      </repository>
+      <repository>
+          <id>dice.repository</id>
+          <name>dice.repository</name>
+          <url>https://raw.github.com/DICE-UNC/DICE-Maven/master/releases</url>
+          <releases>
+              <enabled>true</enabled>
+          </releases>
+          <snapshots>
+              <enabled>false</enabled>
+              <updatePolicy>always</updatePolicy>
+              <checksumPolicy>warn</checksumPolicy>
+          </snapshots>
+      </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.irods.jargon</groupId>
+      <artifactId>jargon-core</artifactId>
+      <version>4.3.0.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>info.picocli</groupId>
+        <artifactId>picocli</artifactId>
+        <version>3.8.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.25</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-nop</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4.1</version>
+        <configuration>
+          <!-- get all project dependencies -->
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+
+        </configuration>
+        <executions>
+          <execution>
+          <id>make-assembly</id>
+                                        <!-- bind to the packaging phase -->
+          <phase>package</phase>
+          <goals>
+            <goal>single</goal>
+          </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+           <groupId>io.solit.maven</groupId>
+           <artifactId>deb-maven-plugin</artifactId>
+           <version>1.0-RC2</version>
+           <extensions>true</extensions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <reporting>
+   <plugins>
+     <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-checkstyle-plugin</artifactId>
+       <version>3.0.0</version>
+       <reportSets>
+         <reportSet>
+           <reports>
+             <report>checkstyle</report>
+           </reports>
+         </reportSet>
+       </reportSets>
+     </plugin>
+   </plugins>
+ </reporting>
+ 
+</project>
