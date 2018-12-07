@@ -4,7 +4,7 @@
 
   <groupId>org.computational-plant-science.jvmicmd</groupId>
   <artifactId>jvmicmd</artifactId>
-  <version>1.0ALPHA</version>
+  <version>1.1ALPHA</version>
   <!-- packaging>jar</packaging -->
   <packaging>deb</packaging>
 
@@ -119,6 +119,9 @@
            <artifactId>deb-maven-plugin</artifactId>
            <version>1.0-RC2</version>
            <extensions>true</extensions>
+           <configuration>
+             <autoDependencies>false</autoDependencies>
+           </configuration>
       </plugin>
 
     </plugins>
@@ -140,5 +143,5 @@
      </plugin>
    </plugins>
  </reporting>
- 
+
 </project>
